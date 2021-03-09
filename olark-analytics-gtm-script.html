@@ -1,0 +1,27 @@
+<script>
+
+function OAEvent(label){
+    console.log("event name:");    
+    console.log(label);
+    dataLayer.push({'event': 'Olark_Chat_C',
+                    'event_action': label
+                    });
+};
+
+olark('api.chat.onMessageToOperator', function(event) {
+    OAEvent('Visitor_Sent_a_Message');
+});
+  
+olark('api.chat.onOfflineMessageToOperator', function(event) {
+    OAEvent('Visitor_Sent_an_Offline_Message');
+});
+  
+olark('api.box.onExpand', function(event) {
+    OAEvent('Visitor_Expanded_Olark');
+});
+
+olark('api.chat.onMessageToOperator', function(event) {
+    OAEvent('Operator_Sent_a_Message');
+});
+
+</script>
